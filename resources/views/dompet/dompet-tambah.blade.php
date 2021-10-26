@@ -27,7 +27,7 @@
                             <h2 class="card-header-title">Dompet</h2> 
                             <div class="toolbar ml-auto">
                                 <div class="btn-group">
-                                    <a href="{{ route('master.dompet') }}" class="btn btn-primary">Kelola Dompet</a>
+                                    <a href="{{ route('master.dompet.dompet') }}" class="btn btn-primary">Kelola Dompet</a>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                     <div class="card">
                         <h5 class="card-header">Tambah Data</h5>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('master.dompet-tambah-proses') }}">
+                            <form method="POST" action="{{ route('master.dompet.tambah-proses') }}">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-6">

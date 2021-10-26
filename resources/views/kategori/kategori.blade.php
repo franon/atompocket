@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Dompet Fran - Dompet')
+@section('title','Dompet Fran - Kategori')
 
 @section('content')
             <div class="row">
@@ -26,10 +26,10 @@
                             <h2 class="card-header-title">Dompet</h2>
                             <div class="toolbar ml-auto">
                                 <div class="btn-group">
-                                    <a href="{{ route('master.dompet.tambah') }}" class="btn btn-primary btn-sm">Buat Baru</a>
+                                    <a href="{{ route('master.kategori.tambah') }}" class="btn btn-primary btn-sm">Buat Baru</a>
                                     <div class="dropdown">
                                         <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          Total { {{$dompets->total()}} }
+                                          Total { {{$kategoris->total()}} }
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                           <a class="dropdown-item" href="#">Semua</a>
@@ -62,14 +62,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($dompets as $id => $dompet)
+                                    @foreach ($kategoris as $id => $kategori)
                                     <tr>
-                                        <th scope="row">{{$dompets->firstItem()+$id}}</th>
-                                        <td>{{ $dompet->nama }}</td>
-                                        <td>{{ $dompet->referensi }}</td>
-                                        <td>{{ $dompet->deskripsi }}</td>
-                                        {{-- @dd($dompet->dompet_status) --}}
-                                        <td>{{ $dompet->dompet_status->nama }}</td>
+                                        <th scope="row">{{$kategoris->firstItem()+$id}}</th>
+                                        <td>{{ $kategori->nama }}</td>
+                                        <td>{{ $kategori->referensi }}</td>
+                                        <td>{{ $kategori->deskripsi }}</td>
+                                        {{-- @dd($kategori->kategori_status) --}}
+                                        <td>{{ $kategori->kategori_dompet_status->nama }}</td>
                                         <td>
                                             <div class="dropdown show">
                                                 <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,8 +77,8 @@
                                               
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                   <a class="dropdown-item" href="#">Detail</a>
-                                                  <a class="dropdown-item" href="{{ route('master.dompet.ubah', ['id'=>$dompet->id]) }}">Ubah</a>
-                                                  @if($dompet->dompet_status->id == 1) 
+                                                  <a class="dropdown-item" href="{{ route('master.kategori.ubah', ['id'=>$kategori->id]) }}">Ubah</a>
+                                                  @if($kategori->kategori_dompet_status->id == 1) 
                                                   <a class="dropdown-item" href="#">Tidak Aktif</a>
                                                   @else
                                                   <a class="dropdown-item" href="#">Aktif</a>
@@ -93,7 +93,7 @@
                             
                         </div>
                     </div>
-                    {{$dompets->links()}}
+                    {{$kategoris->links()}}
                 </div>
             </div>
 @endsection
