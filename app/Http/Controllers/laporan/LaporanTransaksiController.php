@@ -30,7 +30,7 @@ class LaporanTransaksiController extends Controller
         // dd($validated,$request->all(),count($validated['transaksi_status']));
         switch ($request->laporan) {
             case 'web':
-                dd($this->byWeb($validated));
+                return view('laporan.print',['laporan'=>$this->byWeb($validated)]);
                 break;
             case 'excel':
                 break;
@@ -40,7 +40,7 @@ class LaporanTransaksiController extends Controller
     }
 
     public function byWeb($data){
-        dd($this->transaksi->laporanDompet($data));
+        // dd($this->transaksi->laporanDompet($data));
         return $this->transaksi->laporanDompet($data);
     }
 
