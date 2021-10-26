@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="tanggal" class="col-form-label">Tanggal</label>
-                                        <input id="tanggal" type="text" class="form-control col-sm" name="tanggal" readonly>
+                                        <input id="tanggal" type="date" class="form-control col-sm" name="tanggal" readonly>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="kategori" class="col-form-label">Kategori</label>

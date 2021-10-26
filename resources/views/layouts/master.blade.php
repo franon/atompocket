@@ -90,7 +90,7 @@
                                 <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/form-elements.html">Laporan Transaksi</a>
+                                            <a class="nav-link" href="{{ route('transaksi.laporan') }}">Laporan Transaksi</a>
                                         </li>
                                     </ul>
                                 </div>

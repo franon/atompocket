@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\laporan\LaporanTransaksiController;
 use App\Http\Controllers\master\DompetController;
 use App\Http\Controllers\master\KategoriController;
 use App\Http\Controllers\transaksi\DompetKeluarController;
@@ -57,4 +58,9 @@ Route::prefix('transaksi')->name('transaksi.')->group(function () {
         Route::get('tambah', [DompetKeluarController::class,'formStore'])->name('tambah');
         Route::post('tambah/proses', [DompetKeluarController::class,'store'])->name('tambah-proses');
     });
+});
+
+Route::prefix('transaksi')->name('transaksi.')->group(function () {
+    Route::get('laporan', [LaporanTransaksiController::class,'index'])->name('laporan');
+    Route::post('laporan/proses', [LaporanTransaksiController::class,'getData'])->name('laporan-proses');
 });
