@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori_status extends Model
 {
     use HasFactory;
+    public $incrementing = false;
 }

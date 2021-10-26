@@ -19,15 +19,29 @@ class Dompet extends Model
         return $this->hasOne(Dompet_Status::class,'id','status_id');
     }
 
-    public function getDataDompet(){
+    public function dompet(){
+        return $this->belongsTo(Dompet::class);
+    }
 
-        $data = Dompet::with('dompet_status')->orderBy('nama')->paginate(10);
+    public function dompetRaw(){
+        $data = Dompet::with('dompet_status');
         return $data;
     }
 
+    public function paginate(){
+        return $this->dompetRaw()->paginate(10);
+    }
+
+    public function getDataDompet(){
+        return $this->dompetRaw()->orderBy('nama')->get();
+    }
+
+    public function getDataDompetActive(){
+        return $this->dompetRaw()->orderBy('nama')->where('status_id','1')->get();
+    }
+
     public function getDataDompetSpesific($id){
-        $data = Dompet::with('dompet_status')->where('id','=',$id)->first();
-        return $data;
+        return $this->dompetRaw()->where('id','=',$id)->first();
     }
 
     public function updateData($id,$data){

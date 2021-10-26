@@ -11,5 +11,11 @@ class Transaksi_Status extends Model
 
     protected $table = "transaksi_status";
     protected $primaryKey = "id";
-    protected $guarded = ['id'];
+    public $incrementing = false;
+    // protected $keyType = 'char';
+    // protected $guarded = [];
+
+    public function transaksi(){
+        return $this->belongsTo(Transaksi::class);
+    }
 }

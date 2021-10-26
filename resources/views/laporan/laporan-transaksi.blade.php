@@ -48,26 +48,28 @@
                                     <div class="form-group col-md-3">
                                         <label for="transaksi_status" class="col-form-label">Transaksi Status</label>
                                         <br>
-                                        <input type="checkbox" name="transaksi_status[]" value="masuk" id="transaksi_status">Masuk
+                                        <input type="checkbox" name="transaksi_status[]" value="1" id="transaksi_status">Masuk
                                         <br>
-                                        <input type="checkbox" name="transaksi_status[]" value="keluar" id="transaksi_status">Keluar
+                                        <input type="checkbox" name="transaksi_status[]" value="2" id="transaksi_status">Keluar
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="kategori">Kategori</label>
                                         <select name="kategori" id="kategori" class="form-control col-md-6">
-                                            <option value="0">Semua</option>
-                                            <option value="1"selected >Aktif</option>
-                                            <option value="2">Tidak Aktif</option>
+                                            <option value="semua">Semua</option>
+                                            @foreach ($kategoris as $kategori)
+                                            <option value="{{$kategori->id}}">{{$kategori->nama}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="dompet"> Dompet</label>
                                         <select name="dompet" id="dompet" class="form-control col-md-6">
-                                            <option value="0">Semua</option>
-                                            <option value="1"selected >Aktif</option>
-                                            <option value="2">Tidak Aktif</option>
+                                            <option value="semua">Semua</option>
+                                            @foreach ($dompets as $dompet )
+                                                <option value="{{$dompet->id}}">{{$dompet->nama}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

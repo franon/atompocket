@@ -18,15 +18,28 @@ class Kategori extends Model
         return $this->hasOne(Dompet_Status::class,'id','status_id');
     }
 
-    public function getDataKategori(){
-
-        $data = Kategori::with('kategori_dompet_status')->orderBy('nama')->paginate(10);
+    public function kategoriRaw(){
+        $data = Kategori::with('kategori_dompet_status');
         return $data;
     }
 
+    public function kategori(){
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function getDataKategori(){
+        return $this->kategoriRaw()->orderBy('nama')->get();
+    }
+
+    public function getDataKategoriActive(){
+        return $this->kategoriRaw()->orderBy('nama')->where('status_id','1')->get();
+    }
+    public function paginate(){
+        return $this->kategoriRaw()->paginate(10);
+    }
+
     public function getDataKategoriSpesific($id){
-        $data = Kategori::with('kategori_dompet_status')->where('kategori.id','=',$id)->first();
-        return $data;
+        return $this->where('kategori.id','=',$id)->first();
     }
 
     public function updateData($id,$data){

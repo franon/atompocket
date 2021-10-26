@@ -11,4 +11,5 @@ class Dompet_Status extends Model
 
     protected $table = 'dompet_status';
     protected $primaryKey = 'id';
+    public $incrementing = false;
 }

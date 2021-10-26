@@ -16,7 +16,7 @@ class DompetController extends Controller
         $this->dompet = new Dompet();
     }
     public function index(){
-        return view('dompet.dompet',['dompets'=>$this->dompet->getDataDompet()]);
+        return view('dompet.dompet',['dompets'=>$this->dompet->paginate()]);
     }
 
     public function formUpdate($id){

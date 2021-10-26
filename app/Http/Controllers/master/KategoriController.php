@@ -15,7 +15,7 @@ class KategoriController extends Controller
         $this->kategori = new Kategori();
     }
     public function index(){
-        return view('kategori.kategori',['kategoris'=>$this->kategori->getDataKategori()]);
+        return view('kategori.kategori',['kategoris'=>$this->kategori->paginate()]);
     }
 
     public function formUpdate($id){

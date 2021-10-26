@@ -14,15 +14,18 @@ class Transaksi extends Model
     protected $guarded = ['id'];
 
     public function transaksi_dompet(){
-        return $this->hasOne(Dompet::class,'id','dompet_id');
+        // return $this->hasOne(Dompet::class,'id','dompet_id');
+        return $this->hasOne(Dompet::class);
     }
 
     public function transaksi_kategori(){
-        return $this->hasOne(Kategori::class,'id','kategori_id');
+        // return $this->hasOne(Kategori::class,'id','kategori_id');
+        return $this->hasOne(Kategori::class);
     }
 
     public function transaksi_status(){
-        return $this->hasOne(transaksi_status::class,'id','status_id');
+        // return $this->hasOne(Transaksi_Status::class,'id','status_id');
+        return $this->hasOne(Transaksi_Status::class);
     }
 
     public function dompetMasuk(){
@@ -38,54 +41,45 @@ class Transaksi extends Model
     public function laporanDompet($data){
         $query = Transaksi::with(['transaksi_dompet','transaksi_kategori','transaksi_status'])->whereBetween('transaksi.tanggal',[$data['tanggalawal'],$data['tanggalakhir']]);
         if (count($data['transaksi_status']) > 1) {
+            $query->whereIn('transaksi_status.id',$data['transaksi_status']);
+            if ($data['dompet']!='semua' && $data['kategori']!='semua'){
+                $result = $query->where([
+                            ['kategori_id','=',$data['kategori']],
+                            ['dompet_id','=',$data['dompet']],
+                        ])->get();
+                return $result;
+            }
+
             $result = $this->filterKategoriAndDompet($query,$data);
-            return $result;
+            return $result->get();
         }else{
+            $query->where('transaksi_status.id',$data['transaksi_status']);
+            if ($data['dompet']!='semua' && $data['kategori']!='semua'){
+                $result = $query->where([
+                            ['kategori_id','=',$data['kategori']],
+                            ['dompet_id','=',$data['dompet']],
+                        ])->get();
+                return $result;
+            }
+
             $result = $this->filterKategoriAndDompet($query,$data);
-            
-            $result = $query->where([
-                                ['status_id','=',$data['transaksi_status']],
-                                ['kategori_id','=',$data['kategori']],
-                                ['dompet_id','=',$data['dompet']],
-                            ])->get();
-            return $result;
+            return $result->get();
         }
     }
 
-    private function filterKategoriAndDompet($data){
-        if ($data['kategori']==0) {
-            return $this->filterKategori($data['kategori']);
-        }
-        if ($data['dompet']==0) {
-            return $this->filterDompet($data['dompet']);
-        }
-        if ($data['dompet'] != 0 && $data['kategori'] !=0){
-            $result = $query->where([
-                        ['kategori_id','=',$data['kategori']],
-                        ['dompet_id','=',$data['dompet']],
-                    ])->get();
-        return $result;
+    private function filterKategoriAndDompet($query,$data){
+        if ($data['kategori']=='semua'){
+            if ($data['dompet']=='semua') {
+                return $query;
+            }else{
+                return $query->where('dompet_id','=',$data['dompet']);
+            }
+        }else{
+            if ($data['dompet']=='semua') {
+                return $query->where('kategori_id','=',$data['kategori']);
+            }else{
+                return false;
+            }
         }
     }
-
-    private function filterKategori($query,$data){
-        $result = $query->where('dompet_id','=',$data['dompet'])
-        ->orWhere(function($kueri){
-            $kueri->where('kategori_id','1')
-                  ->where('kategori_id','2')
-        });
-
-        return $result;
-    }
-
-    private function filterDompet($query,$dompet){
-        $result = $query->where('kategori','=',$data['kategori'])
-                                ->orWhere(function($kueri){
-                                    $kueri->where('dompet_id','1')
-                                          ->where('dompet_id','2')
-                                });
-        return $result;
-    }
-
-
 }
