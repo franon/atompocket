@@ -14,18 +14,18 @@ class Transaksi extends Model
     protected $guarded = ['id'];
 
     public function transaksi_dompet(){
-        // return $this->hasOne(Dompet::class,'id','dompet_id');
-        return $this->hasOne(Dompet::class);
+        return $this->hasOne(Dompet::class,'id','dompet_id');
+        // return $this->hasOne(Dompet::class);
     }
 
     public function transaksi_kategori(){
-        // return $this->hasOne(Kategori::class,'id','kategori_id');
-        return $this->hasOne(Kategori::class);
+        return $this->hasOne(Kategori::class,'id','kategori_id');
+        // return $this->hasOne(Kategori::class);
     }
 
     public function transaksi_status(){
-        // return $this->hasOne(Transaksi_Status::class,'id','status_id');
-        return $this->hasOne(Transaksi_Status::class);
+        return $this->hasOne(Transaksi_Status::class,'id','status_id');
+        // return $this->hasOne(Transaksi_Status::class);
     }
 
     public function dompetMasuk(){
@@ -41,7 +41,7 @@ class Transaksi extends Model
     public function laporanDompet($data){
         $query = Transaksi::with(['transaksi_dompet','transaksi_kategori','transaksi_status'])->whereBetween('transaksi.tanggal',[$data['tanggalawal'],$data['tanggalakhir']]);
         if (count($data['transaksi_status']) > 1) {
-            $query->whereIn('transaksi_status.id',$data['transaksi_status']);
+            $query->whereIn('status_id',$data['transaksi_status']);
             if ($data['dompet']!='semua' && $data['kategori']!='semua'){
                 $result = $query->where([
                             ['kategori_id','=',$data['kategori']],
@@ -53,7 +53,7 @@ class Transaksi extends Model
             $result = $this->filterKategoriAndDompet($query,$data);
             return $result->get();
         }else{
-            $query->where('transaksi_status.id',$data['transaksi_status']);
+            $query->where('status_id',$data['transaksi_status']);
             if ($data['dompet']!='semua' && $data['kategori']!='semua'){
                 $result = $query->where([
                             ['kategori_id','=',$data['kategori']],

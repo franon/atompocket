@@ -16,6 +16,6 @@ class Transaksi_Status extends Model
     // protected $guarded = [];
 
     public function transaksi(){
-        return $this->belongsTo(Transaksi::class);
+        return $this->belongsTo(Transaksi::class,'id','status_id');
     }
 }
