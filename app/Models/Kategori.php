@@ -25,7 +25,7 @@ class Kategori extends Model
     }
 
     public function getDataKategoriSpesific($id){
-        $data = Kategori::with('kategori_dompet_status')->where('id','=',$id)->first();
+        $data = Kategori::with('kategori_dompet_status')->where('kategori.id','=',$id)->first();
         return $data;
     }
 

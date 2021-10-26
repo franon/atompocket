@@ -67,7 +67,7 @@
                                             <a class="nav-link" href="{{ route('master.dompet.dompet') }}">Dompet <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('master.kategori') }}">Kategori</a>
+                                            <a class="nav-link" href="{{ route('master.kategori.kategori') }}">Kategori</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -77,10 +77,10 @@
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-c3.html">Dompet Masuk</a>
+                                            <a class="nav-link" href="{{ route('transaksi.dompetmasuk.dompetmasuk') }}">Dompet Masuk</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-chartist.html">Dompet Keluar</a>
+                                            <a class="nav-link" href="{{ route('transaksi.dompetkeluar.dompetkeluar') }}">Dompet Keluar</a>
                                         </li>
                                     </ul>
                                 </div>

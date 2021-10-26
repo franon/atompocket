@@ -3,6 +3,8 @@
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\master\DompetController;
 use App\Http\Controllers\master\KategoriController;
+use App\Http\Controllers\transaksi\DompetKeluarController;
+use App\Http\Controllers\transaksi\DompetMasukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+   
+// });
 
-Route::get('/dashboard',[Dashboard::class,'index'])->name('dashboard');
+Route::get('/',[Dashboard::class,'index'])->name('dashboard');
 
 Route::prefix('master')->name('master.')->group(function () {
     Route::prefix('dompet')->name('dompet.')->group(function () {
-        Route::get('/', [DompetController::class,'index'])->name('dompet');
+        Route::get('/dashboard', [DompetController::class,'index'])->name('dompet');
         Route::get('tambah', [DompetController::class,'formStore'])->name('tambah');
         Route::post('tambah/proses', [DompetController::class,'store'])->name('tambah-proses');
         Route::post('ubah/proses', [DompetController::class, 'update'])->name('ubah-proses');
@@ -37,8 +39,22 @@ Route::prefix('master')->name('master.')->group(function () {
         Route::get('tambah', [KategoriController::class,'formStore'])->name('tambah');
         Route::post('tambah/proses', [KategoriController::class,'store'])->name('tambah-proses');
         Route::post('ubah/proses', [KategoriController::class, 'update'])->name('ubah-proses');
-        Route::get('ubah/{id}', [KategoriController::class,'formUpdate'])->name('ubah');     
+        Route::get('ubah/{id}', [KategoriController::class,'formUpdate'])->name('ubah');
     });
 
-    Route::get('kategori',[KategoriController::class,'index'])->name('kategori');
+    // Route::get('kategori',[KategoriController::class,'index'])->name('kategori');
+});
+
+Route::prefix('transaksi')->name('transaksi.')->group(function () {
+    Route::prefix('dompet/masuk')->name('dompetmasuk.')->group(function () {
+        Route::get('/', [DompetMasukController::class,'index'])->name('dompetmasuk');
+        Route::get('tambah', [DompetMasukController::class,'formStore'])->name('tambah');
+        Route::post('tambah/proses', [DompetMasukController::class,'store'])->name('tambah-proses');
+    });
+
+    Route::prefix('dompet/keluar')->name('dompetkeluar.')->group(function () {
+        Route::get('/', [DompetKeluarController::class,'index'])->name('dompetkeluar');
+        Route::get('tambah', [DompetKeluarController::class,'formStore'])->name('tambah');
+        Route::post('tambah/proses', [DompetKeluarController::class,'store'])->name('tambah-proses');
+    });
 });

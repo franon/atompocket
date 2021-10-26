@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Dompet </h2>
+                        <h2 class="pageheader-title">Kategori </h2>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Master</a></li>
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dompet</a></li>
+                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Kategori</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -23,7 +23,7 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-header d-flex">
-                            <h2 class="card-header-title">Dompet</h2>
+                            <h2 class="card-header-title">Kategori</h2>
                             <div class="toolbar ml-auto">
                                 <div class="btn-group">
                                     <a href="{{ route('master.kategori.tambah') }}" class="btn btn-primary btn-sm">Buat Baru</a>
@@ -48,14 +48,13 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Dompet</h5>
+                        <h5 class="card-header">Kategori</h5>
                         <div class="card-body">
                             <table class="table table-hover">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">REFERENSI</th>
                                         <th scope="col">DESKRIPSI</th>
                                         <th scope="col">STATUS</th>
                                         <th scope="col">  </th>
@@ -66,9 +65,7 @@
                                     <tr>
                                         <th scope="row">{{$kategoris->firstItem()+$id}}</th>
                                         <td>{{ $kategori->nama }}</td>
-                                        <td>{{ $kategori->referensi }}</td>
                                         <td>{{ $kategori->deskripsi }}</td>
-                                        {{-- @dd($kategori->kategori_status) --}}
                                         <td>{{ $kategori->kategori_dompet_status->nama }}</td>
                                         <td>
                                             <div class="dropdown show">

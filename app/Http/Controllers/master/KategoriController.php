@@ -19,14 +19,14 @@ class KategoriController extends Controller
     }
 
     public function formUpdate($id){
-        return view('kategori.kategori.ubah',['dompetspesifik'=>$this->kategori->getDataDompetSpesific($id)]);
+        return view('kategori.kategori-ubah',['kategori'=>$this->kategori->getDataKategoriSpesific($id)]);
     }
 
     public function update(KategoriRequest $request){
         $validated = $request->validated();
         $id = $request->id;
-        $this->dompet->updateData($id,$validated);
-        return redirect()->route('master.dompet');
+        $this->kategori->updateData($id,$validated);
+        return redirect()->route('master.kategori.kategori');
     }
 
     public function formStore(){
